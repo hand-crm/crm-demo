@@ -6,6 +6,13 @@ import java.util.List;
 
 
 public interface ListOfValueService {
+
+    /**
+     * 根据查询条件查询值列表
+     * @UpdateBy yn
+     * @param listOfValueVO
+     * @Return List<ListOfValueVO>
+     */
     List<ListOfValueVO> getLstOfVaL(ListOfValueVO listOfValueVO);
     /**
      * 唯一性验证（独立语言代码+语言+Type 和 显示值+语言+type唯一）

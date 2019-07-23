@@ -7,6 +7,12 @@ import java.util.List;
 
 @Repository
 public interface ListOfValueDao {
+    /**
+     * 根据查询条件查询值列表
+     * @UpdateBy yn
+     * @param listOfValueVO
+     * @Return List<ListOfValueVO>
+     */
     List<ListOfValueVO> queryLstOfVaL(ListOfValueVO listOfValueVO);
     /**
      * 唯一性验证（独立语言代码+语言+Type 和 显示值+语言+type唯一）
