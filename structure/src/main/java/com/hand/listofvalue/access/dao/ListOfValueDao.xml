@@ -5,8 +5,6 @@
         SELECT COUNT(*) FROM HC_LST_OF_VAL WHERE lang_id=#{langId} AND type=#{type} AND (name=#{name} OR val=#{val})
     </select>
     <insert id="insertLstOfVal" parameterType="com.hand.listofvalue.access.vo.ListOfValueVO" useGeneratedKeys="true" keyProperty="code">
-        INSERT INTO
-         HC_LST_OF_VAL(CODE,CREATED,CREATED_BY,TYPE,LANG_ID,VAL,NAME,PAR_LST_CODE,LEVEL,ACT_FLG,DESC)
-         VALUES (#{code},sysdate(),#{createdBy},#{type},#{langId},#{val},#{name},#{parLstCode},#{level},#{actFlg},#{desc})
+        INSERT INTO HC_LST_OF_VAL(CODE,CREATED,CREATED_BY,TYPE,LANG_ID,VAL,NAME,PAR_LST_CODE,LEVEL,ACT_FLG,DESC) VALUES (#{code},sysdate(),#{createdBy},#{type},#{langId},#{val},#{name},#{parLstCode},#{level},#{actFlg},#{desc})
     </insert>
 </mapper>
