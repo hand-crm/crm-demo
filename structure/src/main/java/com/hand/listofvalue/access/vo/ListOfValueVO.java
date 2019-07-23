@@ -9,13 +9,13 @@ public class ListOfValueVO {
     private Date updated;//更新日期
     private String updatedBy;//更新人
     private String type;//类型
-    private String language;//语言
-    private String value;//显示值
+    private String langId;//语言
+    private String val;//显示值
     private String name;//独立语言代码
-    private String parentListCode;//父值列表编码
+    private String parLstCode;//父值列表编码
     private Integer level;//层级
-    private String activeFlag;//生效标识
-    private String description;//描述
+    private String actFlg;//生效标识
+    private String desc;//描述
 
     public String getCode() {
         return code;
@@ -65,20 +65,20 @@ public class ListOfValueVO {
         this.type = type;
     }
 
-    public String getLanguage() {
-        return language;
+    public String getLangId() {
+        return langId;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setLangId(String langId) {
+        this.langId = langId;
     }
 
-    public String getValue() {
-        return value;
+    public String getVal() {
+        return val;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setVal(String val) {
+        this.val = val;
     }
 
     public String getName() {
@@ -89,12 +89,12 @@ public class ListOfValueVO {
         this.name = name;
     }
 
-    public String getParentListCode() {
-        return parentListCode;
+    public String getParLstCode() {
+        return parLstCode;
     }
 
-    public void setParentListCode(String parentListCode) {
-        this.parentListCode = parentListCode;
+    public void setParLstCode(String parLstCode) {
+        this.parLstCode = parLstCode;
     }
 
     public Integer getLevel() {
@@ -105,20 +105,20 @@ public class ListOfValueVO {
         this.level = level;
     }
 
-    public String getActiveFlag() {
-        return activeFlag;
+    public String getActFlg() {
+        return actFlg;
     }
 
-    public void setActiveFlag(String activeFlag) {
-        this.activeFlag = activeFlag;
+    public void setActFlg(String actFlg) {
+        this.actFlg = actFlg;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     @Override
@@ -130,13 +130,13 @@ public class ListOfValueVO {
                 ", updated=" + updated +
                 ", updatedBy='" + updatedBy + '\'' +
                 ", type='" + type + '\'' +
-                ", language='" + language + '\'' +
-                ", value='" + value + '\'' +
+                ", langId='" + langId + '\'' +
+                ", val='" + val + '\'' +
                 ", name='" + name + '\'' +
-                ", parentListCode='" + parentListCode + '\'' +
+                ", parLstCode='" + parLstCode + '\'' +
                 ", level=" + level +
-                ", activeFlag='" + activeFlag + '\'' +
-                ", description='" + description + '\'' +
+                ", actFlg='" + actFlg + '\'' +
+                ", desc='" + desc + '\'' +
                 '}';
     }
 }
