@@ -46,8 +46,8 @@ public class ListOfValueServiceImpl implements ListOfValueService{
                 &&StringUtil.isEmpty(listOfValueVO.getLangId())&&StringUtil.isEmpty(listOfValueVO.getName())
                 &&StringUtil.isEmpty(listOfValueVO.getVal())&&StringUtil.isEmpty(listOfValueVO.getLevel().toString()))
         {
-            String code = listOfValueDao.insertLstOfVal(listOfValueVO);
-            if(code!=null){
+            int count = listOfValueDao.insertLstOfVal(listOfValueVO);
+            if(count>0){
                 return "success";
             }
             else{

@@ -19,5 +19,5 @@ public interface ListOfValueDao {
      * @param listOfValueVO
      * @Return code
      */
-    public String insertLstOfVal(ListOfValueVO listOfValueVO);
+    public int insertLstOfVal(ListOfValueVO listOfValueVO);
 }

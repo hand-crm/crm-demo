@@ -8,6 +8,8 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,16 +18,17 @@ public class ListOfValueController {
     @Autowired
     private ListOfValueService listOfValueService;
 
-    @ApiOperation(value="值列表唯一性验证")
-    @GetMapping("/uniqueVerify")
-    public boolean toVerifyLstOfValue(ListOfValueVO listOfValueVO){
-        boolean flag = listOfValueService.toUniqueVerify(listOfValueVO);
-        return flag;
-    }
     @ApiOperation(value="新建值列表")
-    @GetMapping("/addLstOfVal")
-    public String addListOfValue(ListOfValueVO listOfValueVO){
-        String msg = listOfValueService.insertLstOfVal(listOfValueVO);
+    @PostMapping("/addLstOfVal")
+    public String addListOfValue(@RequestBody ListOfValueVO listOfValueVO){
+        boolean flag = listOfValueService.toUniqueVerify(listOfValueVO);
+        String msg = "";
+        if(flag){
+            msg = listOfValueService.insertLstOfVal(listOfValueVO);
+        }
+        else{
+            msg="唯一性验证失败";
+        }
         return msg;
     }
 }
