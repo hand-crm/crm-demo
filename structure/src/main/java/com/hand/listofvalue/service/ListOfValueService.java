@@ -9,7 +9,7 @@ public interface ListOfValueService {
 
     /**
      * 根据查询条件查询值列表
-     * @UpdateBy yn
+     * @UpdateBy yne
      * @param listOfValueVO
      * @Return List<ListOfValueVO>
      */
