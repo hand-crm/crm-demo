@@ -4,10 +4,10 @@ import com.hand.listofvalue.access.vo.ListOfValueVO;
 import com.hand.listofvalue.service.ListOfValueService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -35,5 +35,19 @@ public class ListOfValueController {
             result.put("errMsg","fail");
         }
         return result;
+    }
+
+    @ApiOperation(value="新建值列表")
+    @PostMapping("/addLstOfVal")
+    public String addListOfValue(@RequestBody ListOfValueVO listOfValueVO){
+        boolean flag = listOfValueService.toUniqueVerify(listOfValueVO);
+        String msg = "";
+        if(flag){
+            msg = listOfValueService.insertLstOfVal(listOfValueVO);
+        }
+        else{
+            msg="唯一性验证失败";
+        }
+        return msg;
     }
 }
