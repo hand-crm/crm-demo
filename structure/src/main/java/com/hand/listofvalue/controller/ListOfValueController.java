@@ -3,6 +3,8 @@ package com.hand.listofvalue.controller;
 import com.hand.listofvalue.access.vo.ListOfValueVO;
 import com.hand.listofvalue.service.ListOfValueService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -66,6 +68,9 @@ public class ListOfValueController {
         return msg;
     }
     @ApiOperation(value = "删除值列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType="delete", name="code", value="值列表code", dataType="String")
+    })
     @DeleteMapping("/removeLstOfVal")
     public String removeLstOfVal(@RequestParam("code") String code){
         if (listOfValueService.removeLstOfValByCode(code)){
