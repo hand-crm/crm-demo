@@ -31,7 +31,7 @@ public class ListOfValueController {
         }
         else {
             result.put("code","1");
-            result.put("errMsg","failure");
+            result.put("errMsg","failed");
         }
         return result;
     }
