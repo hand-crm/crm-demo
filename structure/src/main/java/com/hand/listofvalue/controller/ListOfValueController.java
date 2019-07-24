@@ -20,7 +20,7 @@ public class ListOfValueController {
     @ApiOperation(value="值列表查询")
     @GetMapping("/lstOfValues")
     public Map<String,Object> getLstOfValues(@RequestBody() ListOfValueVO listOfValueVO){
-        Map result = new HashMap();
+        Map<String,Object> result = new HashMap<>();
         List<ListOfValueVO> listOfValueVOList = listOfValueService.getLstOfVaL(listOfValueVO);
         if (listOfValueVOList.size()>0){
             result.put("code","0");
@@ -29,7 +29,7 @@ public class ListOfValueController {
         }
         else {
             result.put("code","1");
-            result.put("errMsg","fail");
+            result.put("errMsg","failure");
         }
         return result;
     }
@@ -64,5 +64,13 @@ public class ListOfValueController {
             msg= (String) map.get("msg");
         }
         return msg;
+    }
+    @ApiOperation(value = "删除值列表")
+    @DeleteMapping("/removeLstOfVal")
+    public String removeLstOfVal(@RequestParam("code") String code){
+        if (listOfValueService.removeLstOfValByCode(code)){
+            return "success";
+        }
+        return "failed";
     }
 }

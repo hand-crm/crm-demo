@@ -36,4 +36,12 @@ public interface ListOfValueService {
      * @Return code
      */
     public String updateLstOfVal(ListOfValueVO listOfValueVO);
+
+    /**
+     * 根据唯一code删除值列表
+     * @UpdateBy yne
+     * @param code
+     * @Return List<ListOfValueVO>
+     */
+    boolean removeLstOfValByCode(String code);
 }

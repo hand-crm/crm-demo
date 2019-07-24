@@ -99,5 +99,17 @@ public class ListOfValueServiceImpl implements ListOfValueService{
         else {
             return "miss param";
         }
+
+    }
+
+    @Override
+    public boolean removeLstOfValByCode(String code) {
+        if(!StringUtil.isEmpty(code)){
+            int rows = listOfValueDao.deleteLstOfValByCode(code);
+            if (rows>=1) {
+                return true;
+            }
+        }
+        return false;
     }
 }
