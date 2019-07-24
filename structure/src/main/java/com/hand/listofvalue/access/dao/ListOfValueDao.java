@@ -1,6 +1,7 @@
 package com.hand.listofvalue.access.dao;
 
 import com.hand.listofvalue.access.vo.ListOfValueVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,12 +16,12 @@ public interface ListOfValueDao {
      */
     List<ListOfValueVO> queryLstOfVaL(ListOfValueVO listOfValueVO);
     /**
-     * 唯一性验证（独立语言代码+语言+Type 和 显示值+语言+type唯一）
+     * 新建唯一性验证（独立语言代码+语言+Type+父code 和 显示值+语言+type+父code唯一）
      * @UpdateBy lln
      * @param listOfValueVO
-     * @Return ListOfValueVO
+     * @Return ListOfValueVO,String
      */
-    public int toUniqueVerify(ListOfValueVO listOfValueVO);
+    public int toUniqueVerify(@Param("listOfValueVO") ListOfValueVO listOfValueVO,@Param("str") String str);
 
     /**
      * 新建值列表
@@ -29,4 +30,11 @@ public interface ListOfValueDao {
      * @Return code
      */
     public int insertLstOfVal(ListOfValueVO listOfValueVO);
+    /**
+     * 修改值列表
+     * @UpdateBy lln
+     * @param listOfValueVO
+     * @Return code
+     */
+    public int updateLstOfVal(ListOfValueVO listOfValueVO);
 }

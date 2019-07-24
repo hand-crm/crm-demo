@@ -3,6 +3,7 @@ package com.hand.listofvalue.service;
 import com.hand.listofvalue.access.vo.ListOfValueVO;
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface ListOfValueService {
@@ -20,7 +21,7 @@ public interface ListOfValueService {
      * @param listOfValueVO
      * @Return boolean
      */
-    public boolean toUniqueVerify(ListOfValueVO listOfValueVO);
+    public Map<String,Object> toUniqueVerify(ListOfValueVO listOfValueVO, String str);
     /**
      * 新建值列表
      * @UpdateBy lln
@@ -28,4 +29,11 @@ public interface ListOfValueService {
      * @Return code
      */
     public String insertLstOfVal(ListOfValueVO listOfValueVO);
+    /**
+     * 修改值列表
+     * @UpdateBy lln
+     * @param listOfValueVO
+     * @Return code
+     */
+    public String updateLstOfVal(ListOfValueVO listOfValueVO);
 }

@@ -5,10 +5,7 @@ import com.hand.listofvalue.service.ListOfValueService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -40,13 +37,31 @@ public class ListOfValueController {
     @ApiOperation(value="新建值列表")
     @PostMapping("/addLstOfVal")
     public String addListOfValue(@RequestBody ListOfValueVO listOfValueVO){
-        boolean flag = listOfValueService.toUniqueVerify(listOfValueVO);
+        String str = "insert";
+        Map<String,Object> map = listOfValueService.toUniqueVerify(listOfValueVO,str);
         String msg = "";
+        boolean flag = (boolean) map.get("status");
         if(flag){
             msg = listOfValueService.insertLstOfVal(listOfValueVO);
         }
         else{
-            msg="唯一性验证失败";
+            msg= (String) map.get("msg");
+        }
+        return msg;
+    }
+
+    @ApiOperation(value="修改值列表")
+    @PutMapping("/modifyLstOfVal")
+    public String modifyListOfValue(@RequestBody ListOfValueVO listOfValueVO){
+        String str = "update";
+        Map<String,Object> map = listOfValueService.toUniqueVerify(listOfValueVO,str);
+        String msg = "";
+        boolean flag = (boolean) map.get("status");
+        if(flag){
+            msg = listOfValueService.updateLstOfVal(listOfValueVO);
+        }
+        else{
+            msg= (String) map.get("msg");
         }
         return msg;
     }

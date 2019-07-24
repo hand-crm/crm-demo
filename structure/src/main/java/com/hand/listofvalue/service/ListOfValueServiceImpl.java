@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.hand.frame.util.StringUtil;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ListOfValueServiceImpl implements ListOfValueService{
@@ -19,27 +21,38 @@ public class ListOfValueServiceImpl implements ListOfValueService{
     }
 
     /**
-     * 唯一性验证（独立语言代码+语言+Type 和 显示值+语言+type唯一）
+     * 唯一性验证（独立语言代码+语言+Type+父code 和 显示值+语言+type+父code唯一）
      * @UpdateBy lln
      * @param listOfValueVO
      * @Return boolean
      */
     @Override
-    public boolean toUniqueVerify(ListOfValueVO listOfValueVO) {
-        if(listOfValueVO.getName()!=null&&listOfValueVO.getLangId()!=null&&listOfValueVO.getType()!=null&&listOfValueVO.getVal()!=null){
-            int count = listOfValueDao.toUniqueVerify(listOfValueVO);
+    public Map<String,Object> toUniqueVerify(ListOfValueVO listOfValueVO, String str) {
+        String msg = "";
+        boolean status = true;
+        Map<String,Object> map = new HashMap<>();
+        if(StringUtil.isEmpty(listOfValueVO.getName())&&StringUtil.isEmpty(listOfValueVO.getLangId())
+                &&StringUtil.isEmpty(listOfValueVO.getType())&&StringUtil.isEmpty(listOfValueVO.getVal())
+                &&StringUtil.isEmpty(listOfValueVO.getParLstCode())){
+            int count = listOfValueDao.toUniqueVerify(listOfValueVO,str);
             if(count>0){
                 //验证失败，不唯一
-                return false;
+                msg = "唯一性验证失败";
+                status = false;
             }
             else {
                 //验证成功，唯一
-                return true;
+                msg = "success";
+                status = true;
             }
         }
         else {
-            return false;
+            msg = "参数缺失";
+            status = false;
         }
+        map.put("msg",msg);
+        map.put("status",status);
+        return map;
     }
     /**
      * 新建值列表
@@ -62,8 +75,30 @@ public class ListOfValueServiceImpl implements ListOfValueService{
             }
         }
         else {
-            return "failed";
+            return "miss param";
         }
 
+    }
+    /**
+     * 修改值列表
+     * @UpdateBy lln
+     * @param listOfValueVO
+     * @Return string
+     */
+    @Override
+    public String updateLstOfVal(ListOfValueVO listOfValueVO) {
+        if(StringUtil.isEmpty(listOfValueVO.getCode()))
+        {
+            int count = listOfValueDao.updateLstOfVal(listOfValueVO);
+            if(count>0){
+                return "success";
+            }
+            else{
+                return "failed";
+            }
+        }
+        else {
+            return "miss param";
+        }
     }
 }
