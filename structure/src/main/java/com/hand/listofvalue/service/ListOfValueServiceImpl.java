@@ -31,9 +31,8 @@ public class ListOfValueServiceImpl implements ListOfValueService{
         String msg = "";
         boolean status = true;
         Map<String,Object> map = new HashMap<>();
-        if(StringUtil.isEmpty(listOfValueVO.getName())&&StringUtil.isEmpty(listOfValueVO.getLangId())
-                &&StringUtil.isEmpty(listOfValueVO.getType())&&StringUtil.isEmpty(listOfValueVO.getVal())
-                &&StringUtil.isEmpty(listOfValueVO.getParLstCode())){
+        if(!StringUtil.isEmpty(listOfValueVO.getName())&&!StringUtil.isEmpty(listOfValueVO.getLangId())
+                &&!StringUtil.isEmpty(listOfValueVO.getType())&&!StringUtil.isEmpty(listOfValueVO.getVal())){
             int count = listOfValueDao.toUniqueVerify(listOfValueVO,str);
             if(count>0){
                 //验证失败，不唯一
@@ -62,9 +61,9 @@ public class ListOfValueServiceImpl implements ListOfValueService{
      */
     @Override
     public String insertLstOfVal(ListOfValueVO listOfValueVO) {
-        if(StringUtil.isEmpty(listOfValueVO.getCode())&&StringUtil.isEmpty(listOfValueVO.getType())
-                &&StringUtil.isEmpty(listOfValueVO.getLangId())&&StringUtil.isEmpty(listOfValueVO.getName())
-                &&StringUtil.isEmpty(listOfValueVO.getVal())&&StringUtil.isEmpty(listOfValueVO.getLevel().toString()))
+        if(!StringUtil.isEmpty(listOfValueVO.getCode())&&!StringUtil.isEmpty(listOfValueVO.getType())
+                &&!StringUtil.isEmpty(listOfValueVO.getLangId())&&!StringUtil.isEmpty(listOfValueVO.getName())
+                &&!StringUtil.isEmpty(listOfValueVO.getVal())&&!StringUtil.isEmpty(listOfValueVO.getLevel().toString()))
         {
             int count = listOfValueDao.insertLstOfVal(listOfValueVO);
             if(count>0){
@@ -87,7 +86,7 @@ public class ListOfValueServiceImpl implements ListOfValueService{
      */
     @Override
     public String updateLstOfVal(ListOfValueVO listOfValueVO) {
-        if(StringUtil.isEmpty(listOfValueVO.getCode()))
+        if(!StringUtil.isEmpty(listOfValueVO.getCode()))
         {
             int count = listOfValueDao.updateLstOfVal(listOfValueVO);
             if(count>0){
