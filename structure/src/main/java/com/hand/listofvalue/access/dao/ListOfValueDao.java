@@ -1,5 +1,6 @@
 package com.hand.listofvalue.access.dao;
 
+import com.hand.frame.util.PageQuery;
 import com.hand.listofvalue.access.vo.ListOfValueVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -11,10 +12,17 @@ public interface ListOfValueDao {
     /**
      * 根据查询条件查询值列表
      * @UpdateBy yne
-     * @param listOfValueVO
+     * @param pageQuery
      * @Return List<ListOfValueVO>
      */
-    List<ListOfValueVO> queryLstOfVaL(ListOfValueVO listOfValueVO);
+    List<ListOfValueVO> queryLstOfVaL(PageQuery<ListOfValueVO> pageQuery);
+    /**
+     * 根据查询条件查询值列表计数
+     * @UpdateBy yne
+     * @param pageQuery
+     * @Return int
+     */
+    int queryLstOfVaLCount(PageQuery<ListOfValueVO> pageQuery);
     /**
      * 新建唯一性验证（独立语言代码+语言+Type+父code 和 显示值+语言+type+父code唯一）
      * @UpdateBy lln

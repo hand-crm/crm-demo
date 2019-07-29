@@ -1,5 +1,8 @@
 package com.hand.listofvalue.controller;
 
+import com.hand.demo.access.vo.UserVO;
+import com.hand.frame.model.ServiceData;
+import com.hand.frame.util.PageQuery;
 import com.hand.listofvalue.access.vo.ListOfValueVO;
 import com.hand.listofvalue.service.ListOfValueService;
 import io.swagger.annotations.Api;
@@ -20,20 +23,14 @@ public class ListOfValueController {
     ListOfValueService listOfValueService;
 
     @ApiOperation(value="值列表查询")
-    @GetMapping("/lstOfValues")
-    public Map<String,Object> getLstOfValues(@RequestBody() ListOfValueVO listOfValueVO){
-        Map<String,Object> result = new HashMap<>();
-        List<ListOfValueVO> listOfValueVOList = listOfValueService.getLstOfVaL(listOfValueVO);
-        if (listOfValueVOList.size()>0){
-            result.put("code","0");
-            result.put("errMsg","success");
-            result.put("lstOfVal",listOfValueVOList);
-        }
-        else {
-            result.put("code","1");
-            result.put("errMsg","failed");
-        }
-        return result;
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType="query", name="currentPage", value="当前页", dataType="int"),
+            @ApiImplicitParam(paramType="query", name="pageSize", value="页大小", dataType="int")
+    })
+    @GetMapping("/getLstOfVal")
+    public ServiceData getLstOfVal(@RequestBody(required = false) ListOfValueVO listOfValueVO,int currentPage, int pageSize){
+        PageQuery<ListOfValueVO> pageQuery = new PageQuery<ListOfValueVO>(listOfValueVO, currentPage, pageSize);
+        return  ServiceData.success(listOfValueService.getLstOfVaL(pageQuery), pageQuery.getMapOfPageQuery());
     }
 
     @ApiOperation(value="新建值列表")

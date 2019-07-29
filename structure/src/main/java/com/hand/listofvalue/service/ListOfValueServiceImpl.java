@@ -1,5 +1,6 @@
 package com.hand.listofvalue.service;
 
+import com.hand.frame.util.PageQuery;
 import com.hand.listofvalue.access.dao.ListOfValueDao;
 import com.hand.listofvalue.access.vo.ListOfValueVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,13 @@ public class ListOfValueServiceImpl implements ListOfValueService{
     ListOfValueDao listOfValueDao;
 
     @Override
-    public List<ListOfValueVO> getLstOfVaL(ListOfValueVO listOfValueVO) {
-        return listOfValueDao.queryLstOfVaL(listOfValueVO);
+    public List<ListOfValueVO> getLstOfVaL(PageQuery<ListOfValueVO> pageQuery) {
+        int count = listOfValueDao.queryLstOfVaLCount(pageQuery);
+        pageQuery.setCount(count);
+        if(count > 0) {
+            return listOfValueDao.queryLstOfVaL(pageQuery);
+        }
+        return null;
     }
 
     /**

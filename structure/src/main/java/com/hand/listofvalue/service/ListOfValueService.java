@@ -1,5 +1,6 @@
 package com.hand.listofvalue.service;
 
+import com.hand.frame.util.PageQuery;
 import com.hand.listofvalue.access.vo.ListOfValueVO;
 
 import java.util.List;
@@ -11,10 +12,10 @@ public interface ListOfValueService {
     /**
      * 根据查询条件查询值列表
      * @UpdateBy yne
-     * @param listOfValueVO
+     * @param pageQuery
      * @Return List<ListOfValueVO>
      */
-    List<ListOfValueVO> getLstOfVaL(ListOfValueVO listOfValueVO);
+    List<ListOfValueVO> getLstOfVaL(PageQuery<ListOfValueVO> pageQuery);
     /**
      * 唯一性验证（独立语言代码+语言+Type 和 显示值+语言+type唯一）
      * @UpdateBy lln
